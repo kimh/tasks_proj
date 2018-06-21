@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    parallelism: 2
+    docker:
+      - image: circleci/python:3.6.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      #- restore_cache:
+      #    keys:
+      #    - v1-dependencies-{{ .Branch }}
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install pytest
+            pip install .
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ .Branch }}
+
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            pytest --junitxml=test-reports/junit.xml $(circleci tests glob tests/**/test_*.py | circleci tests split)
+
+      - store_test_results:
+          path: test-reports
