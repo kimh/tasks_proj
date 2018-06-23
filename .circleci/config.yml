@@ -28,9 +28,8 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
+            pip install pytest
             pip install -e .
-            ## TODO: do this without sudo
-            sudo pip install pytest
 
       #- save_cache:
       #    paths:
