@@ -13,7 +13,7 @@ class TestAdd():
         with pytest.raises(ValueError):
             tasks.add(Task(owner='bob'))
 
-    @pytest.mark.skip(reason='misunderstood the API')
+    #@pytest.mark.skip(reason='misunderstood the API')
     def test_done_not_bool(self):
         """Should raise an exception if done is not a bool."""
         with pytest.raises(ValueError):
