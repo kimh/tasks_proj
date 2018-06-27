@@ -18,9 +18,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
+            #python3 -m venv venv
             . venv/bin/activate
-            #pip install pytest
             pip install -e .
 
       - save_cache:
