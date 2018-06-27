@@ -2,8 +2,6 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.6.1
 
     working_directory: ~/repo
@@ -14,7 +12,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-
+          - v1-dependencies-{{ .Branch }}
 
       - run:
           name: install dependencies
@@ -27,13 +25,8 @@ jobs:
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-
+          key: v1-dependencies-{{ .Branch }}
 
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
       - run:
           name: run tests
           command: |
@@ -43,5 +36,5 @@ jobs:
       - store_test_results:
           path: test-reports
 
-      - store_artifacts:
-          path: test-reports   
+      #- store_artifacts:
+      #    path: test-reports
