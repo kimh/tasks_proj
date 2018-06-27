@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    parallelism: 2
     docker:
       - image: circleci/python:3.6.1
 
@@ -31,7 +32,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            pytest --junitxml=test-reports/junit.xml
+            circleci tests glob tests/func/test_*.py tests/unit/test_*.py | pytest --junitxml=test-reports/junit.xml
 
       - store_test_results:
           path: test-reports
