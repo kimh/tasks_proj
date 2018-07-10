@@ -2,8 +2,6 @@ version: 2
 jobs:
   build:
     parallelism: 2
-    docker:
-      - image: circleci/python:3.6.1
 
     working_directory: ~/repo
 
