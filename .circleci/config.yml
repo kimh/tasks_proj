@@ -10,9 +10,9 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ .Branch }}
+      #- restore_cache:
+      #    keys:
+      #    - v1-dependencies-{{ .Branch }}
 
       - run:
           name: install dependencies
