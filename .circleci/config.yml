@@ -19,7 +19,7 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install pytest
+            #pip install pytest
             pip install .
 
       - save_cache:
