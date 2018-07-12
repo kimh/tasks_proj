@@ -12,7 +12,7 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ .Branch }}
+            - v1-dependencies-{{ .Branch }}
 
       - run:
           name: install dependencies
